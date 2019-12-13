@@ -1,23 +1,18 @@
-const { fillPointMatrix, floyd} = require('./floyd-functions.js');
+const { fillPointMatrix, removeNulls, floyd} = require('./floyd-functions.js');
 
-const INF = 99999;					   
 
-let adjacencyMatrix = [[0, 8, 0, 0, 10],
-					   [8, 0, 4, 0, 0],
-					   [0, 4, 0, 6, 16],
-    				   [0, 0, 6, 0, 2],
-    				   [10, 0, 16, 2, 0]];
+let adjacencyMatrix = [[0, 8, 5, 3, 0, 0, 0, 0, 0, 0],
+					   [8, 0, 0, 0, 10, 5, 6, 4, 0, 0],
+					   [5, 0, 0, 0, 0, 0, 2, 0, 0, 0],
+    				   [3, 0, 0, 0, 0, 10, 0, 0, 0, 0],
+    				   [0, 10, 0, 0, 0, 3, 0, 7, 0, 8],
+    				   [0, 5, 0, 10, 3, 0, 0, 0, 0, 0],
+    				   [0, 6, 2, 0, 0, 0, 0, 0, 11, 0],
+    				   [0, 4, 0, 0, 7, 0, 0, 0, 9, 0],
+    				   [0, 0, 0, 0, 0, 0, 11, 9, 0, 12],
+    				   [0, 0, 0, 0, 8, 0, 0, 0, 12, 0]];
 
-adjacencyMatrix.map((row, rowIndex) => 
-			row.map((el, elIndex) => 
-			(el[elIndex] == 0) ? el[elIndex] = INF : el[elIndex]));
-
-console.log(adjacencyMatrix)
-
-let pointMatrix = fillPointMatrix(adjacencyMatrix);
-
-const min = (a,b) => a < b ? a : b;
+let adjancyMatrixWithINF = removeNulls(adjacencyMatrix);
+let pointMatrix = fillPointMatrix(adjancyMatrixWithINF);
 		
 floyd(adjacencyMatrix, pointMatrix);
-
-//floyd();

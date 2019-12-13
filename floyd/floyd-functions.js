@@ -1,3 +1,5 @@
+const INF = 999;					   
+
 const fillPointMatrix = (adjacencyMatrix) => {
 	let pointMatrix = [];
 	for(let i = 0; i != adjacencyMatrix.length; ++i){
@@ -11,6 +13,14 @@ const fillPointMatrix = (adjacencyMatrix) => {
 		}
 	}
 	return pointMatrix;
+}
+
+const removeNulls = (adjacencyMatrix) => {
+	adjacencyMatrix.map((row, rowIndex) => 
+			row.map((el, elIndex) => {
+				row[elIndex] = (row[elIndex] === 0 && elIndex != rowIndex) ? INF : row[elIndex];
+	}));
+	return adjacencyMatrix;
 }
 
 function Step() {
@@ -48,4 +58,4 @@ const floyd = (adjacencyMatrix, pointMatrix) => {
 	}
 }	
 
-module.exports = {fillPointMatrix, floyd};
+module.exports = {fillPointMatrix, removeNulls, floyd};
