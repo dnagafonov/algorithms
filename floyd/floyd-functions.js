@@ -1,4 +1,4 @@
-const INF = 999;					   
+const INF = 99;					   
 
 const fillPointMatrix = (adjacencyMatrix) => {
 	let pointMatrix = [];
@@ -51,10 +51,10 @@ const floyd = (adjacencyMatrix, pointMatrix) => {
 				if(adjacencyMatrix[i][j] > adjacencyMatrix[i][k] + adjacencyMatrix[k][j] && i != k && j != k){
 					adjacencyMatrix[i][j] = adjacencyMatrix[i][k] + adjacencyMatrix[k][j];
 					pointMatrix[i][j] = k;
-	    			showMatrix(adjacencyMatrix, step);
 				}
 			}
 		}
+	    showMatrix(adjacencyMatrix, step);
 	}
 }	
 
